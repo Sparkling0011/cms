@@ -1,0 +1,52 @@
+<mxfile host="65bd71144e">
+    <diagram id="tZmm6QIp7iDZCrQFOXQy" name="Page-1">
+        <mxGraphModel dx="446" dy="242" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="1">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="23" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="3" target="6">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="&lt;b&gt;page-search&lt;/b&gt;&lt;br&gt;头部插槽插入标题，可以从父组件中取得、底部插入搜索和重置按钮&lt;br&gt;初始化表单数据，根据传来配置信息遍历得到&lt;br&gt;设置为表单双向绑定数据为响应式数据，处理搜索与重置的按钮逻辑，将搜索、重置的处理事件交给父组件处理（即更新表格数据）" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="130" y="10" width="260" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="分层架构" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="20" y="225" width="60" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="6" target="7">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="&lt;div&gt;&lt;b&gt;custom-form&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;对el-form进行封装，接受外部配置参数，根据参数遍历生成表单内部元素，接受父组件双向绑定传来的值，浅拷贝formdata进行表单的双向绑定&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;监听formdata的变化，emit变化&lt;/span&gt;&lt;/div&gt;在顶部与底部提供插槽" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="130" y="170" width="260" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="&lt;b&gt;el-form&lt;/b&gt;&lt;br&gt;提供常见表单元素&lt;br&gt;el-input el-select el-date-picker" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="165" y="350" width="190" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="page-table&lt;br&gt;将tableConfig中所有字段传入到custom-table" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="535" y="10" width="220" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="custom-table&lt;br&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="560" y="205" width="170" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="el-table&lt;br&gt;提供el-table、el-table-column......" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="585" y="350" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" style="edgeStyle=none;html=1;entryX=0.559;entryY=0.021;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="15" target="17">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="pieChart" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="330" y="505" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.583;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="16" target="17">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="barChart" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="490" y="505" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="echart" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="430" y="605" width="120" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
