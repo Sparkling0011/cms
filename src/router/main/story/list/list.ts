@@ -1,4 +1,5 @@
-const list = () => import('@/views/main/story/list/list.vue')
+const list = () =>
+  import(/* webpackChunkName: "story" */ '@/views/main/story/list/list.vue')
 export default {
   path: '/main/story/list',
   name: 'list',

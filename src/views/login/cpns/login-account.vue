@@ -59,8 +59,6 @@ export default defineComponent({
             useLocalStorage.deleteCache('password')
           }
           store.dispatch('login/accountLoginAction', accountForm).catch()
-        } else {
-          console.log('error submit!', fields)
         }
       })
     }

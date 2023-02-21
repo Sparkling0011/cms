@@ -4,12 +4,35 @@ const Components = require('unplugin-vue-components/webpack')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 const IconsResolver = require('unplugin-icons/resolver')
 const Icons = require('unplugin-icons/webpack')
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
+const BundleAnalyzerPlugin =
+  require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const path = require('path')
 const pathSrc = path.resolve(__dirname, 'src')
+
 module.exports = defineConfig({
-  transpileDependencies: true,
+  productionSourceMap: false,
   chainWebpack: (config) => {
+    if (process.env.NODE_ENV === 'production') {
+      config.devtool('eval-cheap-source-map')
+      config.externals({
+        echarts: 'echarts',
+        vue: 'Vue',
+        'vue-router': 'VueRouter',
+        vuex: 'vuex',
+        lodash: '_'
+      })
+      config.plugin('compress').use(
+        new CompressionWebpackPlugin({
+          algorithm: 'gzip',
+          test: /\.js$|\.html$|\.json$|\.css/,
+          threshold: 1024 * 100,
+          minRatio: 0.8
+        })
+      )
+      config.plugin('BundleAnalyzerPlugin').use(BundleAnalyzerPlugin)
+    }
     config.resolve.alias.set('@', pathSrc).set('views', '@/views')
     config.plugin('AutoImport').use(
       AutoImport({

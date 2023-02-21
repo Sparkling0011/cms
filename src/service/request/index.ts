@@ -38,7 +38,7 @@ class GlobalRequest {
         return config
       },
       (err) => {
-        console.log('全局请求失败拦截', err)
+        console.error(err)
       }
     )
 
@@ -49,7 +49,7 @@ class GlobalRequest {
       },
       (err) => {
         this.loading?.close()
-        console.log(err)
+        console.error(err)
       }
     )
   }

@@ -1,4 +1,7 @@
-const goods = () => import('@/views/main/product/goods/goods.vue')
+const goods = () =>
+  import(
+    /* webpackChunkName: "product" */ '@/views/main/product/goods/goods.vue'
+  )
 export default {
   path: '/main/product/goods',
   name: 'goods',
