@@ -6,7 +6,7 @@ const IconsResolver = require('unplugin-icons/resolver')
 const Icons = require('unplugin-icons/webpack')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const BundleAnalyzerPlugin =
-  require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+  require('webpack-bundle-analyzer').BundleAnalyzerPlugin·
 
 const path = require('path')
 const pathSrc = path.resolve(__dirname, 'src')
@@ -31,6 +31,7 @@ module.exports = defineConfig({
           minRatio: 0.8
         })
       )
+    } else {
       config.plugin('BundleAnalyzerPlugin').use(BundleAnalyzerPlugin)
     }
     config.resolve.alias.set('@', pathSrc).set('views', '@/views')
