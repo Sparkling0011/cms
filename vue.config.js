@@ -6,7 +6,11 @@ const IconsResolver = require('unplugin-icons/resolver')
 const Icons = require('unplugin-icons/webpack')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const BundleAnalyzerPlugin =
-  require('webpack-bundle-analyzer').BundleAnalyzerPlugin·
+  require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const HappyPack = require('happypack')
+const os = require('os')
+// 开辟一个线程池，拿到系统CPU的核数，happypack 将编译工作利用所有线程
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
 
 const path = require('path')
 const pathSrc = path.resolve(__dirname, 'src')
@@ -16,24 +20,25 @@ module.exports = defineConfig({
   chainWebpack: (config) => {
     if (process.env.NODE_ENV === 'production') {
       config.devtool('eval-cheap-source-map')
-      config.externals({
-        echarts: 'echarts',
-        vue: 'Vue',
-        'vue-router': 'VueRouter',
-        vuex: 'vuex',
-        lodash: '_'
-      })
       config.plugin('compress').use(
         new CompressionWebpackPlugin({
           algorithm: 'gzip',
           test: /\.js$|\.html$|\.json$|\.css/,
-          threshold: 1024 * 100,
-          minRatio: 0.8
+          threshold: 1024 * 10,
+          minRatio: 0.8,
+          deleteOriginalAssets: false //压缩后保留原文件
         })
       )
     } else {
       config.plugin('BundleAnalyzerPlugin').use(BundleAnalyzerPlugin)
     }
+    config.externals({
+      echarts: 'echarts',
+      axios: 'axios',
+      dayjs: 'dayjs',
+      lodash: '_',
+      'lodash-es': '_'
+    })
     config.resolve.alias.set('@', pathSrc).set('views', '@/views')
     config.plugin('AutoImport').use(
       AutoImport({
@@ -77,5 +82,14 @@ module.exports = defineConfig({
         autoInstall: true
       })
     )
+  },
+  configureWebpack: {
+    plugins: [
+      new HappyPack({
+        id: 'happybabel',
+        loaders: ['babel-loader'],
+        threadPool: happyThreadPool
+      })
+    ]
   }
 })
